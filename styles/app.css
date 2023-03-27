@@ -1,0 +1,590 @@
+/* General */
+* { box-sizing: border-box; }
+
+:root {
+  --purple-light-1: #ff4242;
+  --purple-light-2: #EEEAF2;
+  --purple-medium-1: #AA83C8;
+  --purple-medium-1: #37306B;
+  --purple-medium-2: #66347F;
+  --purple-medium-3: #AAa3C8;
+  --purple-dark-2: #DCE5AE;
+
+  --yellow: #EECC75;
+  --green: #CAD297;
+  --aqua: #B7EAC5;
+  --lightBlue: #A2EEE5;
+  --darkBlue: #8EA2EA;
+  --red: #F09D9D;
+
+  --font-family-titles: 'Dosis', sans-serif;
+  --font-family-text: 'Red Hat Display', sans-serif;
+  --font-weight-title1: 800;
+  --font-weight-title2: 700;
+  --font-weight-text1: 400;
+  --font-weight-text2: 500;
+}
+
+html {
+  background-color: #010101;  
+  backdrop-filter: blur(5px);  /*Se le pone un color distinto al html para que al hacer scroll hacia arriba o hacia abajo no se vea el blanco*/
+}
+
+body {
+  background: linear-gradient(#010101 , #111 ,  #010101);
+  color: var(--purple-dark-2);
+  font-family: var(--font-family-text);
+  font-weight: var(--font-weight-text1);
+  font-size: 16px;
+  /* margin: 4px 0 0 0; */
+  margin: 0;
+  padding: 0;
+  /* height: 100vh; */
+  width: 100%;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2 {
+  font-size: 26px;
+  color: var(--purple-dark-2);
+  font-family: var(--font-family-titles);
+  font-weight: var(--font-weight-title1);
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 18px;
+  color: var(--purple-dark-2);
+  font-weight: var(--font-weight-title2);
+}
+
+h3 {
+  color: var(--purple-dark-2);
+  font-weight: var(--font-weight-text2);
+  font-size: 16px;
+}
+
+input {
+  background-color: var(--purple-light-2);
+  color: var(--purple-medium-2);
+  border: none;
+  font-size: 18px;
+  padding-left: 16px;
+}
+
+input::placeholder {
+  color: var(--purple-medium-1);
+  font-family: var(--font-family-text);
+}
+
+button {
+  background-color: var(--purple-light-1);
+  border: none;
+  color: var(--purple-light-2);
+  font-weight: var(--font-weight-text2);
+  font-family: var(--font-family-text);
+  font-size: 15px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, .15);  
+  backdrop-filter: blur(5px);
+}
+button:hover {
+  background-color: rgba(255, 255, 255, .2);
+}
+
+
+/* Shared */
+.header-container, .trendingPreview-header, .categoriesPreview-container, .liked-header {
+  padding: 0 24px;
+}
+
+.trendingPreview-container, .categoriesPreview-container, .liked-container, footer {
+  margin-top: 48px;
+}
+
+.trendingPreview-header, .categoriesPreview-title, .liked-header {
+  margin-bottom: 24px;
+}
+
+.movie-container {
+  cursor: pointer;
+  position: relative;
+}
+
+.movie-container--loading {
+  background: #444;
+  border-radius: 8px;
+  height: 225px;
+  min-height: 225px;
+  max-height: 225px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-bottom: 15px;
+  animation: loading-skeleton infinite 1.5s;
+}
+
+.movie-container--loading:nth-child(2) {
+  animation-delay: .2s;
+}
+.movie-container--loading:nth-child(3) {
+  animation-delay: .4s;
+}
+
+.movie-img {
+  border-radius: 8px;
+  min-height: 275px;
+}
+
+.movie-btn {
+  position: absolute;
+  top: 5px;
+  right: 6px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50px;
+  padding: 0;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.movie-btn::before {
+  content: '🤍';
+  font-size: 14px;
+}
+
+.movie-btn--liked {
+  background-color: rgba(200, 200, 200, 0.3);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
+}
+.movie-btn--liked::before {
+  content: '⭐';
+  font-size: 14px;
+}
+
+.categoriesPreview-list, .categories-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.category-container--loading {
+  background: #444;
+  border-radius: 8px;
+  height: 25px;
+  min-height: 25px;
+  max-height: 25px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-bottom: 15px;
+  animation: loading-skeleton infinite 1.5s;
+}
+.category-container--loading:nth-child(2) {
+  animation-delay: .2s;
+}
+
+
+/* Header */
+.header-container {
+  padding-top: 40px;
+}
+
+.header-container--long {
+  /* background-image: url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg'); */
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%), 
+  /* url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg) */
+  ;
+  background-size: cover !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.header-container--categoryView {
+  background: linear-gradient(180deg, rgba(238, 204, 117, 0.5) 0%, rgba(238, 204, 117, 0) 72.92%);
+} 
+
+.header-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-title .title-icon {
+  display: flex;
+}
+
+.header-title h1 {
+  margin-bottom: 16px;
+}
+
+.header-title img {
+  width: 28px;
+  height: 28px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.header-title .select-language {
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, .15);  
+  backdrop-filter: blur(5px);
+  max-width: 100px;
+  height: 40px;
+  color: #DCE5AE;
+  font-size: 17px;
+  font-family: var(--font-family-text);
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+.header-title .select-language option {
+  border: none;
+  color: #111;
+  background-color: #888;
+  font-size: 15px;  
+  padding: 10px;
+  backdrop-filter: blur(5px);
+}
+
+.header-imagen-detailMovie {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.header-imagen-detailMovie img {
+  width: calc(100% - 100px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+
+.header-arrow {
+  font-weight: var(--font-weight-text2);
+  font-size: 36px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  position: fixed;
+  padding: 0 13px;
+  border-radius: 50%;
+  top: 20px;
+  left: 15px;
+  opacity: 0.6;
+  z-index: 999;
+}
+.header-arrow:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  opacity: 1;
+}
+
+.header-arrow--white {
+  color: var(--purple-light-2);
+}
+
+.header-searchForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.header-searchForm input {
+  height: 48px;
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.header-searchForm button {
+  width: 56px;
+  height: 48px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+#circle-search {
+  width: 15px;
+  height: 15px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 2px solid #DCE5AE;
+  position: absolute;
+  top: 15px;
+  left: calc(50% - 9px);
+  z-index: 1;
+}
+
+#stick-search {
+  width: 2px;
+  background-color: #DCE5AE;
+  height: 7px;
+  border: 1px solid #DCE5AE;
+  transform: rotate(-41deg);
+  position: absolute;
+  bottom: 14px;
+  right: calc(50% - 6px);
+  border-radius: 0 0 50px 50px;
+}
+
+
+/* Trending */
+.trendingPreview-header,
+.liked-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trendingPreview-btn {
+  border-radius: 8px;
+  height: 32px;
+  width: 74px;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.trendingPreview-movieList,
+.liked-movieList {
+  overflow-x: scroll;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 241px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+  cursor: pointer;
+}
+
+.trendingPreview-movieList::-webkit-scrollbar, 
+.liked-movieList::-webkit-scrollbar {
+    background-color: transparent;
+    height: 5px;
+}
+.trendingPreview-movieList::-webkit-scrollbar-thumb,
+.liked-movieList::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, .15);  
+    backdrop-filter: blur(5px);
+    border-radius: 50px;
+}
+
+.trendingPreview-movieList .movie-container,
+.liked-movieList .movie-container {
+  display: inline-block;
+  margin-right: 5px;
+  margin-left: 5px;
+  scroll-snap-align: center;
+}
+
+.trendingPreview-movieList .movie-container .movie-img,
+.liked-movieList .movie-container .movie-img {
+  height: 225px;
+  min-height: 225px;
+  max-height: 225px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Categories */
+.category-container {
+  width: 45%;
+}
+
+.category-title {
+  margin-bottom: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.category-title::before {
+  content: '••••';
+  color: transparent;
+  /* TODO: cambiar color por ID de la categoría */
+  background-color: var(--idColor);
+  border-radius: 8px;
+  margin-right: 8px;
+  width: 8px;
+  height: 8px;
+}
+#id28 { --idColor: var(--lightBlue); }
+#id12 { --idColor: var(--red); }
+#id16 { --idColor: var(--green); }
+#id35 { --idColor: var(--lightBlue); }
+#id80 { --idColor: var(--purple-light-2); }
+#id99 { --idColor: var(--purple-light-1); }
+#id18 { --idColor: var(--purple-light-1); }
+#id10751 { --idColor: var(--yellow); }
+#id14 { --idColor: var(--red); }
+#id36 { --idColor: var(--green); }
+#id27 { --idColor: var(--lightBlue); }
+#id10402 { --idColor: var(--darkBlue); }
+#id9648 { --idColor: var(--purple-light-1); }
+#id10749 { --idColor: var(--purple-light-1); }
+#id878 { --idColor: var(--yellow); }
+#id10770 { --idColor: var(--red); }
+#id53 { --idColor: var(--green); }
+#id10752 { --idColor: var(--lightBlue); }
+#id37 { --idColor: var(--darkBlue); }
+
+
+/* Generic List (search, trending & category) */
+.genericList-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 32px 24px;
+}
+
+.genericList-container .movie-container {
+  display: inline-block;
+  width: 47.5%;
+  margin-bottom: 4px;
+}
+
+.genericList-container .movie-img {
+  width: 100%;
+  min-height: 275px;
+}
+
+
+/* Movie Detail */
+.movieDetail-container {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  padding: 32px 24px 0;
+  margin-top: 403px;
+  z-index: 1;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);  
+  backdrop-filter: blur(5px);
+  height: 100%;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.movieDetail-title {
+  display: inline-block;
+  width: 80%;
+  margin: 0 0 16px 0;
+  padding: 0;
+}
+
+.movieDetail-score {
+  display: inline-block;
+  text-align: right;
+  width: 18%;
+  font-weight: var(--font-weight-title2);
+}
+
+.movieDetail-score::before {
+  content: '★';
+  color: var(--yellow);
+  padding-right: 4px;
+}
+
+.movieDetail-description {
+  margin: 0 0 24px 0;
+}
+
+.relatedMovies-container {
+  margin-top: 24px;
+  height: 216px;
+}
+
+.relatedMovies-title {
+  margin-bottom: 16px;
+}
+
+.relatedMovies-scrollContainer {
+  position: absolute;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  white-space: nowrap;
+  width: calc(100vw - 56px);
+  height: 220px;
+  padding-bottom: 16px;
+  cursor: pointer;
+}
+
+.relatedMovies-scrollContainer::-webkit-scrollbar {
+  background-color: transparent;
+  height: 5px;
+}
+.relatedMovies-scrollContainer::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, .15);  
+  backdrop-filter: blur(5px);
+  border-radius: 50px;
+}
+
+.relatedMovies-scrollContainer .movie-container {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.relatedMovies-scrollContainer .movie-img {
+  width: 125px;
+  min-width: 125px;
+  max-width: 125px;
+  height: 187.5px;
+  min-height: 187.5px;
+  max-height: 187.5px;
+}
+  
+
+/* Footer */
+footer {
+  color: var(--purple-light-2);
+  text-align: center;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  border-top: 2px solid rgba(255, 255, 255, .15);  
+  backdrop-filter: blur(5px);
+  width: 100%;
+  /* position: absolute;
+  bottom: 0; */
+}
+
+
+/* Navigation */
+.inactive {
+  display: none;
+}
+
+
+/* Animations */
+@keyframes loading-skeleton {
+  0%, 100% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 0%;
+  }
+}

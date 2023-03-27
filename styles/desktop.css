@@ -1,0 +1,40 @@
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+.header-title {
+    margin-bottom: 20px;
+}
+
+.header-title img {
+    width: 40px;
+    height: 40px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.header-imagen-detailMovie img {
+    width: calc(100% - 580px);
+}
+
+.category-container {
+    width: 22%;
+}
+
+.genericList-container .movie-container {
+    width: 24%;
+}
+
+
+@media (min-width: 1024px) {
+    .genericList-container .movie-container {
+        width: 19%;
+    }
+    .header-imagen-detailMovie img {
+        width: calc(100% - 720px);
+    }
+}

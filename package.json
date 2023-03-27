@@ -1,0 +1,22 @@
+{
+  "name": "api-rest-movieapp-practice",
+  "version": "1.0.0",
+  "description": "Curso Practico de Consumo de API Rest con JavaScript de Platzi",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErTrumpeter/API-Rest-MovieApp-Practice.git"
+  },
+  "keywords": [
+    "UnRepoAleatorio"
+  ],
+  "author": "Ernesto Hernandez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ErTrumpeter/API-Rest-MovieApp-Practice/issues"
+  },
+  "homepage": "https://github.com/ErTrumpeter/API-Rest-MovieApp-Practice#readme"
+}
