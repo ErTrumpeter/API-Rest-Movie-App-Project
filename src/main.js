@@ -35,7 +35,7 @@ const languages = [
     {
         "iso_639_1": "fr",
         "english_name": "French",
-        "name": "français"
+        "name": "Français"
     },
     {
         "iso_639_1": "de",

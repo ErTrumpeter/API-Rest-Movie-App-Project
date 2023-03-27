@@ -170,7 +170,7 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
+  /* position: relative; */
   flex-wrap: wrap;
 }
 
@@ -236,13 +236,13 @@ button:hover {
 
 .header-title .select-language {
   border: none;
-  border-radius: 10px;
+  border-radius: 4px;
   background-color: rgba(255, 255, 255, .15);  
   backdrop-filter: blur(5px);
-  max-width: 100px;
+  max-width: 90px;
   height: 40px;
   color: #DCE5AE;
-  font-size: 17px;
+  font-size: 15px;
   font-family: var(--font-family-text);
   text-align: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
@@ -305,16 +305,18 @@ button:hover {
 .header-searchForm input {
   height: 48px;
   width: 100%;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  padding-left: 26px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  color: #010101;
 }
 .header-searchForm button {
   width: 56px;
   height: 48px;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
   position: relative;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6); */
 }
 
 #circle-search {
@@ -351,11 +353,16 @@ button:hover {
 }
 
 .trendingPreview-btn {
-  border-radius: 8px;
+  border-radius: 4px;
   height: 32px;
-  width: 74px;
+  width: 76px;
   font-size: 14px;
+  background-color: #eF8500;
+  color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+.trendingPreview-btn:hover {
+  background-color: #fFa500;
 }
 
 .trendingPreview-movieList,
@@ -417,10 +424,10 @@ button:hover {
   text-overflow: ellipsis;
 }
 
-.category-title::before {
+/* .category-title::before {
   content: '••••';
   color: transparent;
-  /* TODO: cambiar color por ID de la categoría */
+  /* TODO: cambiar color por ID de la categoría */ /*
   background-color: var(--idColor);
   border-radius: 8px;
   margin-right: 8px;
@@ -445,7 +452,7 @@ button:hover {
 #id10770 { --idColor: var(--red); }
 #id53 { --idColor: var(--green); }
 #id10752 { --idColor: var(--lightBlue); }
-#id37 { --idColor: var(--darkBlue); }
+#id37 { --idColor: var(--darkBlue); } */
 
 
 /* Generic List (search, trending & category) */
@@ -565,7 +572,7 @@ footer {
   justify-content: center;
   align-items: center;
   font-size: 15px;
-  border-top: 2px solid rgba(255, 255, 255, .15);  
+  border-top: 1px solid #eF8500;  
   backdrop-filter: blur(5px);
   width: 100%;
   /* position: absolute;
