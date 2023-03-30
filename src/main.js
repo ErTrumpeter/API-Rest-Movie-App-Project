@@ -366,7 +366,7 @@ const getTrendingMovies = async () => {
 const getPaginatedTrendingMovies = async () => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement
 
-    const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15)
+    const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 100)  //aqui se le resta 15 normalmente
     const pageIsNotMax = page < maxPage 
 
     if (scrollIsBottom && pageIsNotMax) {
@@ -406,6 +406,7 @@ const getMovieById = async (id) => {
     `
     // linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%)
 
+    movieDetailImg.src = ''
     movieDetailImg.src = movieImageUrl
 
     movieDetailTitle.textContent = movie.title
