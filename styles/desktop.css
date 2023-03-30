@@ -6,8 +6,20 @@ h2 {
     font-size: 28px;
 }
 
+.header-container, .trendingPreview-header {
+    padding: 0 84px;
+}
+
+.header-container {
+    padding: 40px 44px 0;
+}
+
 .header-title {
     margin-bottom: 20px;
+}
+
+.header-title .select-language {
+    align-self: center;
 }
 
 .header-title img {
@@ -18,7 +30,7 @@ h2 {
 }
 
 .header-imagen-detailMovie img {
-    width: calc(100% - 580px);
+    width: calc(100% - 180px);
 }
 
 .category-container {
@@ -32,9 +44,9 @@ h2 {
 
 @media (min-width: 1024px) {
     .genericList-container .movie-container {
-        width: 19%;
+        width: 16%;
     }
     .header-imagen-detailMovie img {
-        width: calc(100% - 720px);
+        width: calc(100% - 180px);
     }
 }

@@ -4,7 +4,14 @@ let infiniteScroll
 
 
 searchFromBtn.addEventListener('click', () => {
-    location.hash = '#search=' + searchFromInput.value
+    if (!searchFromInput.value) {
+        searchFromInput.placeholder = "Ingresar nombre por favor..."
+        setTimeout(() => {
+            searchFromInput.placeholder = "Buscar..."
+        }, 3000);
+    } else {
+        location.hash = '#search=' + searchFromInput.value
+    }
 })
 
 trendingBtn.addEventListener('click', () => {
@@ -103,6 +110,7 @@ function homePage() {
     getTrendingMoviesPreview()
     getCategoriesPreview()
     getLikedMovies()
+    isSomeLikedMovie()
 }
 
 

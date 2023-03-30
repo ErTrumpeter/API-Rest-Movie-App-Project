@@ -13,7 +13,13 @@ h2 {
 }
 
 .header-imagen-detailMovie img {
-    width: calc(100% - 380px);
+    width: calc(100% - 180px);
+    max-height: 490px;
+    max-width: 320px;
+}
+
+.movieDetail-container {
+    margin-top: 510px;
 }
   
 
