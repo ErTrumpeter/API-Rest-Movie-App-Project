@@ -8,7 +8,7 @@ searchFromBtn.addEventListener('click', () => {
         searchFromInput.placeholder = "Ingresar nombre por favor..."
         setTimeout(() => {
             searchFromInput.placeholder = "Buscar..."
-        }, 3000);
+        }, 5000);
     } else {
         location.hash = '#search=' + searchFromInput.value
     }
